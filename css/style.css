@@ -1,0 +1,2217 @@
+/* ============================================================
+   01 — GLOBAL RESET
+   ============================================================ */
+
+/*
+  * تعني اختيار جميع عناصر HTML.
+
+  box-sizing: border-box
+  يجعل حساب width و height أسهل بكثير،
+  لأن الـpadding والـborder يصبحان محسوبين
+  داخل الحجم المحدد للعنصر.
+*/
+
+* {
+  box-sizing: border-box;
+}
+
+/*
+  إزالة الـmargin والـpadding الافتراضي
+  الذي يضعه المتصفح على بعض العناصر.
+
+  هذا يعطينا تحكمًا كاملًا في التصميم.
+*/
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/*
+  scroll-behavior: smooth
+
+  يجعل الانتقال إلى الأقسام عند الضغط على روابط مثل:
+
+  href="#about"
+
+  انتقالًا سلسًا بدلًا من القفز مباشرة للقسم.
+*/
+
+html {
+  scroll-behavior: smooth;
+}
+
+/*
+  إزالة الـmargin الافتراضي من العناصر
+  التي عادةً يكون لها Margin من المتصفح.
+*/
+
+h1,
+h2,
+h3,
+p,
+ul,
+ol {
+  margin: 0;
+}
+
+/*
+  إزالة الـpadding الافتراضي من القوائم.
+
+  سنضع المسافات التي نريدها بأنفسنا.
+*/
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+/*
+  جعل الصور Responsive.
+
+  max-width: 100%
+  تمنع الصورة من الخروج خارج العنصر الأب.
+
+  display: block
+  يمنع وجود مساحة صغيرة أسفل الصور
+  بسبب طريقة تعامل المتصفح مع الصور كـinline elements.
+*/
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/*
+  إزالة الشكل الافتراضي للروابط.
+
+  سنحدد شكل الروابط بأنفسنا.
+*/
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/*
+  جعل الأزرار وحقول الإدخال تستخدم نفس الخط
+  الذي نحدده للموقع بدلًا من الخط الافتراضي للمتصفح.
+*/
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+/*
+  منع textarea من أن يصبح أصغر من الحجم
+  الذي نحدده له.
+
+  resize: vertical
+  يسمح للمستخدم بتغيير ارتفاعه فقط.
+*/
+
+textarea {
+  resize: vertical;
+}
+
+/* ============================================================
+   02 — DESIGN TOKENS / CSS VARIABLES
+   ============================================================ */
+
+/*
+  :root
+
+  هنا نضع المتغيرات العامة للموقع.
+
+  وهذه من أهم أجزاء الـTemplate.
+
+  بدل أن نكتب اللون في عشرات الأماكن:
+
+  #0a1633
+
+  سنكتب:
+
+  var(--color-primary)
+
+  وإذا أردنا تغيير هوية الموقع بالكامل
+  يمكننا تغيير القيمة هنا فقط.
+*/
+
+:root {
+  /* ----------------------------------------------------------
+     COLORS
+     ---------------------------------------------------------- */
+
+  /*
+    اللون الأساسي:
+
+    Navy / Dark Navy
+
+    سيكون هو اللون الرئيسي للهوية.
+  */
+
+  --color-primary: #0b1833;
+
+  /*
+    درجة أغمق من الكحلي.
+
+    سنستخدمها في بعض الخلفيات والعناصر.
+  */
+
+  --color-primary-dark: #071125;
+
+  /*
+    درجة أفتح من الكحلي.
+  */
+
+  --color-primary-light: #14284d;
+
+  /*
+    اللون الذهبي الأساسي.
+
+    سيكون Accent Color للموقع.
+  */
+
+  --color-secondary: #c9a45c;
+
+  /*
+    ذهبي أفتح.
+
+    يمكن استخدامه في Hover وبعض التفاصيل.
+  */
+
+  --color-secondary-light: #dfc27d;
+
+  /*
+    لون الخلفية الأساسي.
+  */
+
+  --color-background: #f7f8fa;
+
+  /*
+    لون الخلفيات البيضاء.
+  */
+
+  --color-white: #ffffff;
+
+  /*
+    لون النص الأساسي.
+  */
+
+  --color-text: #172033;
+
+  /*
+    لون النص الثانوي.
+
+    سنستخدمه للنصوص الأقل أهمية.
+  */
+
+  --color-text-muted: #697386;
+
+  /*
+    لون الحدود.
+  */
+
+  --color-border: #e4e7ec;
+
+  /* ----------------------------------------------------------
+     TYPOGRAPHY
+     ---------------------------------------------------------- */
+
+  /*
+    الخط الأساسي للموقع.
+
+    Inter تم استيراده في HTML.
+  */
+
+  --font-primary: "Inter", sans-serif;
+
+  /*
+    حجم النص الأساسي.
+  */
+
+  --font-size-base: 16px;
+
+  /*
+    ارتفاع السطر الأساسي.
+
+    line-height أكبر قليلًا يجعل القراءة أسهل.
+  */
+
+  --line-height-base: 1.6;
+
+  /* ----------------------------------------------------------
+     LAYOUT
+     ---------------------------------------------------------- */
+
+  /*
+    أقصى عرض للـContainer.
+
+    عندما تصبح الشاشة أكبر من هذا الحجم
+    لن يتمدد المحتوى بلا حدود.
+  */
+
+  --container-width: 1200px;
+
+  /*
+    المسافة الداخلية الأفقية للـContainer
+    على الشاشات الصغيرة.
+  */
+
+  --container-padding: 24px;
+
+  /*
+    المسافة العمودية الأساسية بين الأقسام.
+  */
+
+  --section-padding: 100px;
+
+  /* ----------------------------------------------------------
+     BORDER RADIUS
+     ---------------------------------------------------------- */
+
+  /*
+    زوايا صغيرة.
+  */
+
+  --radius-sm: 8px;
+
+  /*
+    زوايا متوسطة.
+  */
+
+  --radius-md: 14px;
+
+  /*
+    زوايا كبيرة.
+
+    سنستخدمها في Cards وبعض العناصر الرئيسية.
+  */
+
+  --radius-lg: 24px;
+
+  /* ----------------------------------------------------------
+     SHADOWS
+     ---------------------------------------------------------- */
+
+  /*
+    Shadow خفيف جدًا.
+
+    مناسب للكروت والعناصر البيضاء.
+  */
+
+  --shadow-sm: 0 4px 20px rgba(7, 17, 37, 0.06);
+
+  /*
+    Shadow أكبر.
+
+    سنستخدمه عند الحاجة لإعطاء عنصر
+    أهمية بصرية أكبر.
+  */
+
+  --shadow-md: 0 15px 40px rgba(7, 17, 37, 0.1);
+
+  /* ----------------------------------------------------------
+     TRANSITIONS
+     ---------------------------------------------------------- */
+
+  /*
+    مدة الانتقال المستخدمة في Hover وغيرها.
+  */
+
+  --transition: 0.3s ease;
+}
+
+/* ============================================================
+   03 — BODY
+   ============================================================ */
+
+body {
+  /*
+    الخط الأساسي.
+  */
+
+  font-family: var(--font-primary);
+
+  /*
+    حجم النص الأساسي.
+  */
+
+  font-size: var(--font-size-base);
+
+  /*
+    لون النص.
+  */
+
+  color: var(--color-text);
+
+  /*
+    لون خلفية الموقع.
+  */
+
+  background-color: var(--color-background);
+
+  /*
+    ارتفاع السطر.
+  */
+
+  line-height: var(--line-height-base);
+
+  /*
+    يمنع بعض مشاكل Horizontal Overflow.
+  */
+
+  overflow-x: hidden;
+}
+
+/* ============================================================
+   04 — CONTAINER
+   ============================================================ */
+
+/*
+  الـContainer هو أحد أهم أجزاء الـLayout.
+
+  وظيفته:
+
+  1. تحديد أقصى عرض للمحتوى.
+  2. وضع المحتوى في منتصف الصفحة.
+  3. إضافة مساحة من الجانبين.
+*/
+
+.container {
+  width: 100%;
+
+  max-width: var(--container-width);
+
+  margin-inline: auto;
+
+  padding-inline: var(--container-padding);
+}
+
+/* ============================================================
+   05 — TYPOGRAPHY
+   ============================================================ */
+
+/*
+  H1
+
+  هو العنوان الرئيسي للـHero.
+*/
+
+h1 {
+  font-size: clamp(2.8rem, 6vw, 5.5rem);
+
+  line-height: 1.05;
+
+  font-weight: 700;
+
+  letter-spacing: -0.04em;
+}
+
+/*
+  H2
+
+  عناوين الأقسام.
+*/
+
+h2 {
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+
+  line-height: 1.1;
+
+  font-weight: 700;
+
+  letter-spacing: -0.03em;
+}
+
+/*
+  H3
+
+  العناوين الفرعية.
+*/
+
+h3 {
+  font-size: 1.25rem;
+
+  line-height: 1.3;
+
+  font-weight: 600;
+}
+
+/* ============================================================
+   06 — SECTION
+   ============================================================ */
+
+/*
+  جميع الأقسام التي تحتوي على class="section"
+  تحصل على نفس الـVertical Spacing.
+*/
+
+.section {
+  padding-block: var(--section-padding);
+}
+
+/*
+  عنوان القسم.
+
+  نستخدمه في:
+
+  About
+  Services
+  Portfolio
+  FAQ
+  وغيرها.
+*/
+
+.section-heading {
+  max-width: 700px;
+
+  margin-bottom: 60px;
+}
+
+/*
+  Eyebrow
+
+  النص الصغير فوق العنوان.
+
+  مثل:
+
+  ABOUT US
+  OUR SERVICES
+  CONTACT
+*/
+
+.eyebrow {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 16px;
+
+  color: var(--color-secondary);
+
+  font-size: 0.8rem;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.16em;
+}
+
+/*
+  إضافة خط صغير بجانب الـEyebrow.
+
+  ::before pseudo-element
+  يسمح لنا بإنشاء عنصر بصري
+  بدون إضافة HTML جديد.
+*/
+
+.eyebrow::before {
+  content: "";
+
+  width: 28px;
+
+  height: 2px;
+
+  background-color: var(--color-secondary);
+}
+
+/*
+  الفقرة الموجودة داخل Section Heading.
+*/
+
+.section-heading p:not(.eyebrow) {
+  margin-top: 20px;
+
+  color: var(--color-text-muted);
+
+  max-width: 600px;
+}
+
+/* ============================================================
+   07 — BUTTONS
+   ============================================================ */
+
+/*
+  التصميم الأساسي لكل Buttons.
+*/
+
+.btn {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  min-height: 52px;
+
+  padding-inline: 28px;
+
+  border-radius: 999px;
+
+  font-size: 0.9rem;
+
+  font-weight: 600;
+
+  border: 1px solid transparent;
+
+  cursor: pointer;
+
+  transition:
+    transform var(--transition),
+    background-color var(--transition),
+    color var(--transition),
+    border-color var(--transition);
+}
+
+/*
+  عند مرور الماوس على الزر
+  نرفعه قليلًا لأعلى.
+*/
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+/*
+  Primary Button
+
+  الكحلي + الذهبي.
+*/
+
+.btn-primary {
+  color: var(--color-primary);
+
+  background-color: var(--color-secondary);
+}
+
+/*
+  Hover للزر الأساسي.
+*/
+
+.btn-primary:hover {
+  background-color: var(--color-secondary-light);
+}
+
+/*
+  Secondary Button
+
+  مناسب على الخلفيات الفاتحة.
+*/
+
+.btn-secondary {
+  color: var(--color-primary);
+
+  background-color: transparent;
+
+  border-color: var(--color-primary);
+}
+
+/*
+  Hover للزر الثانوي.
+*/
+
+.btn-secondary:hover {
+  color: var(--color-white);
+
+  background-color: var(--color-primary);
+}
+
+/*
+  Hero Secondary Button
+
+  الـHero له خلفية داكنة،
+  لذلك الـSecondary Button الأساسي
+  لن يكون مناسبًا هناك.
+
+  نغير ألوانه فقط داخل الـHero
+  بدون التأثير على الـSecondary Buttons
+  الموجودة في باقي الموقع.
+*/
+
+.hero .btn-secondary {
+  color: var(--color-white);
+
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.hero .btn-secondary:hover {
+  color: var(--color-primary);
+
+  background-color: var(--color-white);
+
+  border-color: var(--color-white);
+}
+
+/* ============================================================
+   08 — HEADER
+   ============================================================ */
+
+/*
+  الـHeader سيكون أبيض.
+
+  position: sticky
+
+  يجعل الـHeader يظل ظاهرًا أثناء Scroll.
+*/
+
+.site-header {
+  position: sticky;
+
+  top: 0;
+
+  z-index: 1000;
+
+  background-color: rgba(255, 255, 255, 0.92);
+
+  backdrop-filter: blur(14px);
+
+  border-bottom: 1px solid rgba(228, 231, 236, 0.8);
+}
+
+/*
+  ترتيب محتويات الـHeader.
+*/
+
+.site-header .container {
+  min-height: 82px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 30px;
+}
+
+/*
+  Logo.
+*/
+
+.logo {
+  color: var(--color-primary);
+
+  font-size: 1.4rem;
+
+  font-weight: 800;
+
+  letter-spacing: -0.03em;
+}
+
+/*
+  الجزء الأخير من الـLogo يمكن تلوينه
+  بالذهبي لاحقًا إذا احتجنا.
+*/
+
+/* ============================================================
+   09 — NAVIGATION
+   ============================================================ */
+
+.nav-list {
+  display: flex;
+
+  align-items: center;
+
+  gap: 32px;
+}
+
+.nav-list a {
+  position: relative;
+
+  color: var(--color-text);
+
+  font-size: 0.9rem;
+
+  font-weight: 500;
+
+  transition: color var(--transition);
+}
+
+/*
+  Hover على روابط الـNavigation.
+*/
+
+.nav-list a:hover {
+  color: var(--color-secondary);
+}
+
+/*
+  خط ذهبي صغير أسفل الرابط.
+
+  يبدأ بعرض 0.
+*/
+
+.nav-list a::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+
+  bottom: -8px;
+
+  width: 0;
+
+  height: 2px;
+
+  background-color: var(--color-secondary);
+
+  transition: width var(--transition);
+}
+
+/*
+  عند Hover يصبح الخط بعرض كامل.
+*/
+
+.nav-list a:hover::after {
+  width: 100%;
+}
+
+/*
+  CTA الموجود داخل الـHeader.
+*/
+
+.header-cta {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  min-height: 44px;
+
+  padding-inline: 22px;
+
+  color: var(--color-white);
+
+  background-color: var(--color-primary);
+
+  border-radius: 999px;
+
+  font-size: 0.85rem;
+
+  font-weight: 600;
+
+  transition: all var(--transition);
+}
+
+.header-cta:hover {
+  background-color: var(--color-primary-light);
+
+  transform: translateY(-2px);
+}
+
+/*
+  Mobile Menu Button.
+
+  سنخفيه على Desktop.
+*/
+
+.menu-toggle {
+  display: none;
+
+  border: 0;
+
+  background: transparent;
+
+  padding: 8px;
+
+  cursor: pointer;
+}
+
+/*
+  الخطوط الثلاثة الخاصة بالـHamburger Menu.
+*/
+
+.menu-toggle span {
+  display: block;
+
+  width: 25px;
+
+  height: 2px;
+
+  margin: 5px 0;
+
+  background-color: var(--color-primary);
+}
+
+/* ============================================================
+   10 — HERO
+   ============================================================ */
+
+/*
+  Hero Section
+*/
+
+.hero {
+  min-height: calc(100vh - 82px);
+  padding-block: 100px;
+  display: flex;
+  align-items: center;
+  background:
+    linear-gradient(
+      135deg,
+      var(--color-primary-dark),
+      var(--color-primary)
+    );
+  color: var(--color-white);
+}
+
+
+/*
+  Hero Layout
+*/
+
+.hero .container {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 80px;
+}
+
+
+/*
+  Hero Text
+*/
+
+.hero-text {
+  max-width: 700px;
+}
+
+
+/*
+  Hero Eyebrow
+*/
+
+.hero .eyebrow {
+  color: var(--color-secondary-light);
+}
+
+
+/*
+  Hero Title
+*/
+
+.hero h1 {
+  color: var(--color-white);
+}
+
+
+/*
+  Hero Description
+*/
+
+.hero #hero-description {
+  max-width: 600px;
+  margin-top: 24px;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1.1rem;
+}
+
+
+/*
+  Hero Buttons
+*/
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+
+/*
+  Hero Image Container
+*/
+
+.hero-image {
+  position: relative;
+}
+
+
+/*
+  Decorative Shape Behind Image
+*/
+
+.hero-image::before {
+  content: "";
+  position: absolute;
+  inset: -20px;
+  border: 1px solid rgba(201, 164, 92, 0.35);
+  border-radius: var(--radius-lg);
+  transform: rotate(4deg);
+  z-index: 0;
+}
+
+
+/*
+  Hero Image
+*/
+
+.hero-image img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+/* ============================================================
+   11 — ABOUT
+   ============================================================ */
+
+/*
+  Layout الـAbout.
+*/
+
+.about-content {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  align-items: center;
+
+  gap: 80px;
+}
+
+/*
+  صورة الـAbout.
+*/
+
+.about-image img {
+  width: 100%;
+
+  aspect-ratio: 4 / 3;
+
+  object-fit: cover;
+
+  border-radius: var(--radius-lg);
+}
+
+/*
+  محتوى النص.
+*/
+
+.about-text {
+  max-width: 500px;
+}
+
+.about-text p {
+  margin-top: 20px;
+
+  color: var(--color-text-muted);
+}
+
+/*
+  Text Link.
+
+  يستخدم في:
+
+  Learn More
+  View Project
+  وغيرها.
+*/
+
+.text-link {
+  display: inline-flex;
+
+  align-items: center;
+
+  margin-top: 24px;
+
+  color: var(--color-primary);
+
+  font-size: 0.9rem;
+
+  font-weight: 600;
+
+  transition: color var(--transition);
+}
+
+.text-link:hover {
+  color: var(--color-secondary);
+}
+
+/* ============================================================
+   12 — SERVICES
+   ============================================================ */
+
+.services {
+  background-color: var(--color-white);
+}
+
+/*
+  Grid الخدمات.
+
+  repeat(3, 1fr)
+  يعني 3 أعمدة متساوية.
+*/
+
+.services-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 24px;
+}
+
+/*
+  Service Card.
+*/
+
+.service-card {
+  padding: 36px;
+
+  background-color: var(--color-background);
+
+  border: 1px solid var(--color-border);
+
+  border-radius: var(--radius-md);
+
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    border-color var(--transition);
+}
+
+/*
+  عند Hover تتحرك الـCard قليلًا للأعلى.
+*/
+
+.service-card:hover {
+  transform: translateY(-8px);
+
+  border-color: rgba(201, 164, 92, 0.5);
+
+  box-shadow: var(--shadow-md);
+}
+
+/*
+  أيقونة الخدمة.
+*/
+
+.service-icon {
+  width: 52px;
+
+  height: 52px;
+
+  display: grid;
+
+  place-items: center;
+
+  margin-bottom: 28px;
+
+  color: var(--color-primary);
+
+  background-color: rgba(201, 164, 92, 0.15);
+
+  border-radius: 50%;
+}
+
+/*
+  عنوان الخدمة.
+*/
+
+.service-card h3 {
+  margin-bottom: 14px;
+}
+
+/*
+  وصف الخدمة.
+*/
+
+.service-card p {
+  color: var(--color-text-muted);
+}
+
+/* ============================================================
+   13 — PORTFOLIO
+   ============================================================ */
+
+.portfolio-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 24px;
+}
+
+/*
+  Project Card.
+*/
+
+.project-card {
+  overflow: hidden;
+
+  background-color: var(--color-white);
+
+  border: 1px solid var(--color-border);
+
+  border-radius: var(--radius-md);
+
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition);
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+
+  box-shadow: var(--shadow-md);
+}
+
+/*
+  صورة المشروع.
+*/
+
+.project-image {
+  overflow: hidden;
+}
+
+.project-image img {
+  width: 100%;
+
+  aspect-ratio: 4 / 3;
+
+  object-fit: cover;
+
+  transition: transform 0.5s ease;
+}
+
+/*
+  تكبير الصورة قليلًا عند Hover.
+*/
+
+.project-card:hover .project-image img {
+  transform: scale(1.05);
+}
+
+/*
+  معلومات المشروع.
+*/
+
+.project-content {
+  padding: 26px;
+}
+
+/*
+  تصنيف المشروع.
+*/
+
+.project-category {
+  color: var(--color-secondary);
+
+  font-size: 0.75rem;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.1em;
+}
+
+/*
+  عنوان المشروع.
+*/
+
+.project-content h3 {
+  margin-top: 8px;
+}
+
+/* ============================================================
+   14 — TESTIMONIALS
+   ============================================================ */
+
+.testimonials {
+  color: var(--color-white);
+
+  background-color: var(--color-primary);
+}
+
+.testimonials .section-heading p:not(.eyebrow) {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.testimonials-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 24px;
+}
+
+.testimonial-card {
+  padding: 36px;
+
+  background-color: rgba(255, 255, 255, 0.05);
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  border-radius: var(--radius-md);
+}
+
+/*
+  نص الـTestimonial.
+
+  تم تغيير الـselector من:
+
+  .testimonial-text
+
+  إلى:
+
+  .testimonial-message
+
+  لأن JavaScript يقوم بإنشاء:
+
+  <p class="testimonial-message">
+*/
+
+.testimonial-message {
+  color: rgba(255, 255, 255, 0.85);
+
+  font-size: 1.05rem;
+}
+
+/*
+  معلومات العميل.
+*/
+
+.testimonial-author {
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  margin-top: 28px;
+}
+
+/*
+  لا توجد صورة للعميل في الـHTML الحالي
+  الذي يتم إنشاؤه بواسطة JavaScript.
+
+  لذلك تم حذف selector:
+
+  .testimonial-author img
+
+  لأنه غير مستخدم.
+*/
+
+.testimonial-author h3 {
+  font-size: 0.95rem;
+
+  color: var(--color-white);
+}
+
+/*
+  JavaScript يقوم بإنشاء:
+
+  <span>Business Owner</span>
+
+  وليس:
+
+  <p>Business Owner</p>
+
+  لذلك نستخدم span هنا.
+*/
+
+.testimonial-author span {
+  display: block;
+
+  margin-top: 3px;
+
+  color: rgba(255, 255, 255, 0.55);
+
+  font-size: 0.8rem;
+}
+
+/* ============================================================
+   15 — PRICING
+   ============================================================ */
+
+.pricing {
+  background-color: var(--color-white);
+}
+
+.pricing-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 24px;
+}
+
+.pricing-card {
+  position: relative;
+
+  padding: 40px 32px;
+
+  background-color: var(--color-background);
+
+  border: 1px solid var(--color-border);
+
+  border-radius: var(--radius-md);
+
+  text-align: center;
+}
+
+/*
+  الخطة المميزة.
+
+  سنجعلها أوضح بصريًا.
+
+  ملاحظة مهمة:
+
+  reveal يستخدم transform أيضًا.
+
+  لذلك لا نريد أن يكون transform الخاص
+  بالـfeatured هو المسيطر أثناء بداية الـanimation.
+
+  سنضع الحركة النهائية فقط عندما يصل
+  العنصر إلى reveal-visible.
+*/
+
+.pricing-card.featured {
+  border: 2px solid var(--color-secondary);
+
+  transform: translateY(0);
+}
+
+/*
+  بعد ظهور الـCard في الشاشة
+  نرفع الـFeatured Card لأعلى.
+*/
+
+.pricing-card.featured.reveal-visible {
+  transform: translateY(-10px);
+}
+
+/*
+  كلمة Popular.
+*/
+
+.pricing-badge {
+  position: absolute;
+
+  top: 0;
+
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  padding: 6px 14px;
+
+  color: var(--color-primary);
+
+  background-color: var(--color-secondary);
+
+  border-radius: 999px;
+
+  font-size: 0.7rem;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+}
+
+.price {
+  margin-block: 20px;
+
+  color: var(--color-primary);
+
+  font-size: 3rem;
+
+  font-weight: 700;
+}
+
+/* ============================================================
+   16 — FAQ
+   ============================================================ */
+
+.faq-list {
+  max-width: 850px;
+
+  margin-inline: auto;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--color-border);
+}
+
+/*
+  السؤال.
+
+  cursor: pointer
+  يخبر المستخدم بصريًا أن العنصر قابل للضغط.
+*/
+
+.faq-item summary {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding-block: 24px;
+
+  color: var(--color-primary);
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  list-style: none;
+}
+
+/*
+  علامة + الموجودة في نهاية السؤال.
+*/
+
+.faq-icon {
+  font-size: 1.5rem;
+
+  font-weight: 400;
+
+  transition: transform 0.3s ease;
+}
+
+/*
+  عند فتح السؤال،
+  نقوم بتدوير علامة + لتصبح بشكل ×.
+*/
+
+.faq-item[open] .faq-icon {
+  transform: rotate(45deg);
+}
+
+/*
+  إزالة السهم الافتراضي في بعض المتصفحات.
+*/
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+/*
+  الإجابة.
+*/
+
+.faq-item p {
+  padding-bottom: 24px;
+
+  color: var(--color-text-muted);
+}
+
+/* ============================================================
+   17 — CTA
+   ============================================================ */
+
+/*
+  CTA ستكون Section داكنة لجذب الانتباه.
+*/
+
+.cta-section {
+  padding-block: 100px;
+
+  color: var(--color-white);
+
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-primary-light)
+  );
+}
+
+.cta-content {
+  max-width: 750px;
+
+  margin-inline: auto;
+
+  text-align: center;
+}
+
+.cta-content .eyebrow {
+  justify-content: center;
+}
+
+.cta-content h2 {
+  margin-top: 10px;
+}
+
+.cta-content p:not(.eyebrow) {
+  margin-top: 20px;
+
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ============================================================
+   18 — CONTACT
+   ============================================================ */
+
+.contact-content {
+  display: grid;
+
+  grid-template-columns: 0.8fr 1.2fr;
+
+  gap: 80px;
+}
+
+/*
+  Contact Information.
+*/
+
+.contact-info {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 30px;
+}
+
+.contact-item h3 {
+  margin-bottom: 8px;
+
+  color: var(--color-primary);
+}
+
+.contact-item p,
+.contact-item a {
+  color: var(--color-text-muted);
+}
+
+.contact-item a:hover {
+  color: var(--color-secondary);
+}
+
+/* ============================================================
+   19 — FORM
+   ============================================================ */
+
+.contact-form {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.form-group label {
+  color: var(--color-primary);
+
+  font-size: 0.85rem;
+
+  font-weight: 600;
+}
+
+/*
+  Input و Textarea.
+*/
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+
+  padding: 15px 16px;
+
+  color: var(--color-text);
+
+  background-color: var(--color-white);
+
+  border: 1px solid var(--color-border);
+
+  border-radius: var(--radius-sm);
+
+  outline: none;
+
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+/*
+  عندما يضغط المستخدم داخل Input.
+*/
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--color-secondary);
+
+  box-shadow: 0 0 0 4px rgba(201, 164, 92, 0.12);
+}
+
+/* ============================================================
+   20 — FOOTER
+   ============================================================ */
+
+.site-footer {
+  color: rgba(255, 255, 255, 0.7);
+
+  background-color: var(--color-primary-dark);
+}
+
+/*
+  محتوى الـFooter.
+*/
+
+.footer-content {
+  display: grid;
+
+  grid-template-columns: 2fr 1fr 1fr;
+
+  gap: 60px;
+
+  padding-block: 70px;
+}
+
+/*
+  Logo داخل الـFooter.
+*/
+
+.site-footer .logo {
+  color: var(--color-white);
+}
+
+.footer-brand p {
+  max-width: 300px;
+
+  margin-top: 16px;
+}
+
+/*
+  عناوين الـFooter.
+*/
+
+.site-footer h3 {
+  margin-bottom: 18px;
+
+  color: var(--color-white);
+
+  font-size: 0.9rem;
+}
+
+/*
+  روابط الـFooter.
+*/
+
+.footer-links ul {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+.footer-links a,
+.footer-social a {
+  color: rgba(255, 255, 255, 0.6);
+
+  font-size: 0.85rem;
+
+  transition: color var(--transition);
+}
+
+.footer-links a:hover,
+.footer-social a:hover {
+  color: var(--color-secondary);
+}
+
+.footer-social {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  gap: 10px;
+}
+
+/*
+  الجزء السفلي من الـFooter.
+*/
+
+.footer-bottom {
+  padding-block: 24px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-bottom p {
+  color: rgba(255, 255, 255, 0.45);
+
+  font-size: 0.8rem;
+
+  text-align: center;
+}
+
+/* ============================================================
+   21 — RESPONSIVE DESIGN
+   ============================================================ */
+
+/*
+  Tablet / Smaller Desktop
+
+  عند وصول الشاشة إلى 992px
+  نبدأ بتقليل بعض المساحات.
+*/
+
+@media (max-width: 992px) {
+  :root {
+    --section-padding: 80px;
+  }
+
+  /*
+    Hero يصبح عمودًا واحدًا.
+  */
+
+  .hero .container {
+    grid-template-columns: 1fr;
+
+    gap: 60px;
+  }
+
+  /*
+    جعل صورة الـHero أصغر.
+  */
+
+  .hero-visual {
+    max-width: 600px;
+  }
+
+/*
+  تقليل حجم صورة الـHero على الـTablet
+  حتى لا تأخذ مساحة كبيرة من الشاشة.
+*/
+
+.hero-image {
+  max-width: 650px;
+  width: 100%;
+  margin-inline: auto;
+}
+
+
+.hero-image img {
+  aspect-ratio: 16 / 9;
+}
+
+  /*
+    About يصبح عمودًا واحدًا.
+  */
+
+  .about-content {
+    grid-template-columns: 1fr;
+
+    gap: 50px;
+  }
+
+  /*
+    الخدمات تصبح عمودين.
+  */
+
+  .services-grid,
+  .portfolio-grid,
+  .pricing-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /*
+    الـContact.
+  */
+
+  .contact-content {
+    grid-template-columns: 1fr;
+
+    gap: 50px;
+  }
+
+  /*
+    Footer.
+  */
+
+  .footer-content {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 768px) {
+  :root {
+    --container-padding: 20px;
+
+    --section-padding: 70px;
+  }
+
+  /*
+    إخفاء الـNavigation التقليدي.
+
+    لاحقًا JavaScript سيفتحه عند الضغط
+    على Hamburger Button.
+  */
+
+  .main-nav {
+    display: none;
+  }
+
+  /*
+    إخفاء CTA الموجود في Header على الهاتف
+    لتوفير المساحة.
+  */
+
+  .header-cta {
+    display: none;
+  }
+
+  /*
+    إظهار زر الـHamburger.
+  */
+
+  .menu-toggle {
+    display: block;
+  }
+
+  /*
+    تصغير الـHero.
+  */
+
+  .hero {
+    padding-block: 90px;
+  }
+
+  /*
+    H1 يصبح أصغر.
+  */
+
+  h1 {
+    font-size: clamp(2.5rem, 12vw, 4rem);
+  }
+
+  /*
+    Grid الخدمات والمشاريع والأسعار
+    يصبح عمودًا واحدًا.
+  */
+
+  .services-grid,
+  .portfolio-grid,
+  .pricing-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /*
+    إزالة حركة الـFeatured Pricing
+    على الهاتف.
+  */
+
+  .pricing-card.featured {
+    transform: none;
+  }
+
+  /*
+    Testimonials.
+  */
+
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /*
+    Footer يصبح عمودًا واحدًا.
+  */
+
+  .footer-content {
+    grid-template-columns: 1fr;
+
+    gap: 40px;
+  }
+}
+
+/* ============================================================
+   SMALL MOBILE
+   ============================================================ */
+
+@media (max-width: 480px) {
+  /*
+    تقليل Padding الـCards.
+  */
+
+  .service-card,
+  .testimonial-card,
+  .pricing-card {
+    padding: 28px 22px;
+  }
+
+  /*
+    أزرار الـHero تصبح بعرض كامل.
+  */
+
+  /*
+  ترتيب أزرار الـHero
+  بشكل عمودي على الشاشات الصغيرة جدًا.
+*/
+
+.hero-buttons {
+  flex-direction: column;
+}
+
+
+/*
+  جعل أزرار الـHero تأخذ
+  العرض الكامل.
+*/
+
+.hero-buttons .btn {
+  width: 100%;
+}
+}
+
+/* ============================================================
+   JAVASCRIPT STATES
+   ============================================================ */
+
+/*
+  Header عندما يبدأ المستخدم في عمل Scroll.
+
+  نضيف Shadow خفيف لإعطاء إحساس بأن الـHeader
+  أصبح منفصلًا عن المحتوى.
+*/
+
+.site-header.scrolled {
+  box-shadow: 0 8px 30px rgba(7, 17, 37, 0.08);
+}
+
+/* ============================================================
+   MOBILE MENU
+   ============================================================ */
+
+/*
+  في Desktop الـNavigation طبيعي.
+
+  في Mobile كنا أخفيناه.
+
+  الآن عندما JavaScript يضيف:
+
+  .menu-open
+
+  نعرض الـNavigation.
+*/
+
+@media (max-width: 768px) {
+  .main-nav.menu-open {
+    display: block;
+
+    position: absolute;
+
+    top: 82px;
+
+    left: 0;
+
+    width: 100%;
+
+    padding: 20px;
+
+    background-color: var(--color-white);
+
+    border-bottom: 1px solid var(--color-border);
+
+    box-shadow: var(--shadow-md);
+  }
+
+  /*
+    تحويل الـNavigation إلى عمودي.
+  */
+
+  .main-nav.menu-open .nav-list {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 0;
+  }
+
+  /*
+    جعل كل رابط يأخذ عرضًا مناسبًا
+    مع إضافة مساحة للضغط عليه.
+  */
+
+  .main-nav.menu-open .nav-list a {
+    display: block;
+
+    width: 100%;
+
+    padding-block: 14px;
+  }
+
+  /*
+    إخفاء الخط الصغير أسفل الروابط
+    داخل Mobile Menu.
+  */
+
+  .main-nav.menu-open .nav-list a::after {
+    display: none;
+  }
+  /*
+  إزالة حركة الـFeatured Pricing
+  على الهاتف.
+
+  نلغي الـtransform سواء كان العنصر
+  ظهر بالفعل أو ما زال في مرحلة الـReveal.
+*/
+
+.pricing-card.featured,
+.pricing-card.featured.reveal-visible {
+  transform: none;
+}
+}
+
+/* ============================================================
+   HAMBURGER ACTIVE STATE
+   ============================================================ */
+
+/*
+  عندما JavaScript يضيف:
+
+  .menu-toggle.active
+
+  نحول الـHamburger إلى شكل قريب من X.
+*/
+
+.menu-toggle.active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/*
+  نضيف Transition للخطوط
+  حتى يكون التحول Smooth.
+*/
+
+.menu-toggle span {
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+/* ============================================================
+   SCROLL REVEAL
+   ============================================================ */
+
+/*
+  أي عنصر يحمل class="reveal"
+  يبدأ مخفيًا قليلًا.
+*/
+
+.reveal {
+  opacity: 0;
+
+  transform: translateY(30px);
+
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+
+/*
+  عندما يظهر العنصر داخل الشاشة
+  JavaScript سيضيف reveal-visible.
+*/
+
+.reveal.reveal-visible {
+  opacity: 1;
+
+  transform: translateY(0);
+}
+
+/* ============================================================
+   ACCESSIBILITY
+   ============================================================ */
+
+/*
+  إظهار Focus واضح عند التنقل باستخدام
+  لوحة المفاتيح.
+
+  هذا مهم للـAccessibility.
+
+  لا يظهر عادةً عند الضغط بالماوس،
+  وإنما عند استخدام Keyboard Navigation.
+*/
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--color-secondary);
+
+  outline-offset: 4px;
+}
+
+/* ============================================================
+   ACCESSIBILITY — REDUCED MOTION
+   ============================================================ */
+
+/*
+  بعض المستخدمين يفضلون تقليل الـAnimations
+  بسبب إعدادات Accessibility الخاصة بجهازهم.
+
+  في هذه الحالة نلغي الحركات تقريبًا.
+*/
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  /*
+    Scroll Reveal يظهر مباشرة
+    بدون Animation.
+  */
+
+  .reveal {
+    opacity: 1;
+
+    transform: none;
+
+    transition: none;
+  }
+
+  /*
+    إيقاف معظم الـAnimations وTransitions.
+  */
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+
+    animation-iteration-count: 1 !important;
+
+    transition-duration: 0.01ms !important;
+  }
+}

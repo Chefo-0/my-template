@@ -1,0 +1,726 @@
+<!doctype html>
+<!--
+  هذا السطر يخبر المتصفح أن الملف مكتوب باستخدام HTML5.
+  HTML5 هو الإصدار الحديث من HTML الذي سنستخدمه في المشروع.
+-->
+
+<html lang="en">
+  <!--
+  <html> هو العنصر الأساسي الذي يحتوي على كل محتوى الصفحة.
+
+  lang="en"
+  يحدد لغة الصفحة للمتصفح ومحركات البحث وقارئات الشاشة.
+
+  حاليًا نضع en لأن الـTemplate سيكون بالإنجليزية.
+  ويمكننا لاحقًا تغييره إلى:
+  lang="ar"
+  إذا كان الموقع عربيًا.
+-->
+
+  <head>
+    <!--
+    <head> يحتوي على معلومات وإعدادات الصفحة
+    التي لا تظهر مباشرة داخل الصفحة للمستخدم.
+  -->
+
+    <meta charset="UTF-8" />
+    <!--
+    يحدد طريقة ترميز الأحرف المستخدمة في الصفحة.
+
+    UTF-8 مهم جدًا لأنه يسمح لنا باستخدام:
+    - English
+    - العربية
+    - الأرقام
+    - الرموز
+    - معظم اللغات المختلفة
+
+    بدونه قد تظهر بعض الأحرف العربية بشكل غير صحيح.
+  -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--
+    هذا السطر مهم جدًا للـResponsive Design.
+
+    width=device-width
+    يجعل عرض الصفحة مساويًا لعرض شاشة الجهاز.
+
+    initial-scale=1.0
+    يحدد مستوى التكبير الابتدائي للصفحة.
+
+    بدونه قد تظهر الصفحة بشكل سيئ على الهاتف.
+  -->
+
+    <meta
+      name="description"
+      content="A modern and professional website template."
+    />
+    <!--
+    هذا وصف الصفحة.
+
+    تستخدمه محركات البحث مثل Google لفهم محتوى الصفحة
+    وقد يظهر في نتائج البحث.
+
+    لاحقًا عندما نستخدم الـTemplate لعميل جديد
+    سنغير النص الموجود داخل content.
+  -->
+
+    <meta name="author" content="Your Name" />
+    <!--
+    يحدد صاحب أو مطور الموقع.
+
+    في الـTemplate يمكن تغييره حسب المشروع أو الشركة.
+  -->
+
+    <meta name="robots" content="index, follow" />
+    <!--
+    يخبر محركات البحث أنه مسموح لها:
+
+    index
+    بإضافة الصفحة إلى نتائج البحث.
+
+    follow
+    باتباع الروابط الموجودة داخل الصفحة.
+  -->
+
+    <meta property="og:title" content="Your Website Name" />
+    <!--
+    Open Graph Metadata.
+
+    تستخدم عندما يتم مشاركة الموقع على منصات التواصل
+    مثل Facebook وLinkedIn وغيرها.
+
+    og:title
+    هو العنوان الذي يمكن أن يظهر عند مشاركة الرابط.
+  -->
+
+    <meta property="og:description" content="Your website description." />
+    <!--
+    الوصف الذي يمكن أن يظهر عند مشاركة الموقع
+    على منصات التواصل الاجتماعي.
+  -->
+
+    <meta property="og:type" content="website" />
+    <!--
+    يحدد نوع المحتوى الذي تتم مشاركته.
+
+    website
+    تعني أن الرابط يشير إلى موقع ويب.
+  -->
+
+    <meta property="og:image" content="assets/images/og-image.jpg" />
+    <!--
+    الصورة التي يمكن أن تظهر عند مشاركة الموقع
+    على مواقع التواصل الاجتماعي.
+
+    لاحقًا سنضع الصورة الفعلية داخل:
+    assets/images/
+  -->
+
+    <link rel="icon" href="assets/icons/favicon.ico" />
+    <!--
+    يحدد الـFavicon الخاص بالموقع.
+
+    الـFavicon هو الأيقونة الصغيرة التي تظهر:
+    - بجانب اسم الموقع في Browser Tab
+    - في Bookmarks
+    - في بعض نتائج المتصفح
+
+    سنضع الملف داخل:
+    assets/icons/
+  -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <!--
+    يساعد المتصفح على إنشاء اتصال مبكر مع Google Fonts
+    إذا كنا سنستخدم خطوطًا من هناك.
+
+    هذا يمكن أن يحسن سرعة تحميل الخط.
+  -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!--
+    اتصال إضافي بخادم ملفات الخطوط.
+
+    crossorigin مطلوب لأن ملفات الخطوط قد تأتي
+    من مصدر مختلف عن الموقع.
+  -->
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!--
+    هنا نستورد خط Inter من Google Fonts.
+
+    rel="stylesheet"
+    يخبر المتصفح أن الملف عبارة عن CSS Stylesheet.
+
+    لاحقًا يمكننا تغيير الخط حسب نوع المشروع.
+  -->
+
+    <link rel="stylesheet" href="css/style.css" />
+    <!--
+    هذا أهم ملف CSS الخاص بالمشروع.
+
+    href يحدد مكان ملف CSS.
+
+    ملفنا موجود داخل:
+    css/style.css
+
+    لذلك كتبنا:
+    css/style.css
+
+    هنا سنضع كل تصميم الموقع.
+  -->
+
+    <title>Your Website Name | Modern Digital Experience</title>
+    <!--
+    عنوان الصفحة.
+
+    يظهر في:
+    - Browser Tab
+    - نتائج البحث غالبًا
+    - بعض روابط المشاركة
+
+    هذا من أهم عناصر SEO.
+
+    لاحقًا سنغيره حسب العميل أو المشروع.
+  -->
+  </head>
+
+  <body>
+    <!--
+    <body> يحتوي على كل المحتوى الذي سيظهر للمستخدم
+    داخل الصفحة.
+
+    كل الموقع تقريبًا سيكون داخل هذا العنصر.
+  -->
+
+    <!-- ========================================================= -->
+    <!-- HEADER                                                    -->
+    <!-- ========================================================= -->
+
+    <header class="site-header">
+      <!--
+      Header هو الجزء العلوي الأساسي للموقع.
+
+      غالبًا سيحتوي على:
+      - Logo
+      - Navigation
+      - Button
+      - Mobile Menu
+
+      class="site-header"
+      سنستخدمها لاحقًا في CSS لتنسيق الـHeader.
+    -->
+
+      <div class="container">
+        <!--
+        container هو عنصر سنستخدمه للتحكم في:
+
+        - أقصى عرض للمحتوى
+        - المسافات الجانبية
+        - محاذاة عناصر الموقع
+
+        سنبني نظام الـcontainer في CSS.
+      -->
+
+        <a href="#home" class="logo">
+          <!--
+          <a> يستخدم لإنشاء رابط.
+
+          هنا سنستخدمه كـLogo للموقع.
+
+          href="#home"
+          يعيد المستخدم إلى بداية الصفحة.
+        -->
+
+          YourBrand
+          <!--
+          اسم الشركة أو الـBrand.
+
+          لاحقًا يمكن تغييره من Template إلى Template.
+        -->
+        </a>
+
+        <nav class="main-nav" aria-label="Main navigation">
+          <!--
+          <nav> عنصر Semantic مخصص لمجموعة روابط التنقل.
+
+          aria-label
+          يساعد أدوات Accessibility مثل Screen Readers
+          على فهم وظيفة هذا الـNavigation.
+        -->
+
+          <ul class="nav-list">
+            <!--
+            <ul> = Unordered List
+
+            سنستخدمها هنا لتجميع روابط الـNavigation
+            بطريقة منظمة وSemantic.
+          -->
+
+            <li>
+              <a href="#home">Home</a>
+            </li>
+
+            <li>
+              <a href="#about">About</a>
+            </li>
+
+            <li>
+              <a href="#services">Services</a>
+            </li>
+
+            <li>
+              <a href="#portfolio">Portfolio</a>
+            </li>
+
+            <li>
+              <a href="#pricing">Pricing</a>
+            </li>
+
+            <li>
+              <a href="#faq">FAQ</a>
+            </li>
+
+            <li>
+              <a href="#contact">Contact</a>
+            </li>
+          </ul>
+        </nav>
+
+        <a href="#contact" class="header-cta"> Get Started </a>
+        <!--
+        CTA = Call To Action
+
+        هذا زر أو رابط نريد من المستخدم أن يتفاعل معه.
+
+        هنا وضعناه كرابط يقود المستخدم إلى Contact Section.
+      -->
+
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+        >
+          <!--
+          هذا الزر سيستخدم في نسخة الهاتف.
+
+          لاحقًا باستخدام JavaScript
+          سيقوم بفتح وإغلاق الـMobile Menu.
+
+          type="button"
+          يمنع الزر من التصرف كزر Submit
+          إذا كان داخل Form.
+
+          aria-expanded="false"
+          يخبر Screen Reader أن القائمة مغلقة حاليًا.
+        -->
+
+          <span></span>
+          <span></span>
+          <span></span>
+          <!--
+          هذه العناصر الثلاثة ستشكل أيقونة Hamburger Menu
+          باستخدام CSS.
+        -->
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <!--
+      <main> يحتوي على المحتوى الأساسي والفريد للصفحة.
+
+      لا نضع داخله الـHeader أو Footer.
+
+      يساعد هذا أيضًا في:
+      - SEO
+      - Accessibility
+      - تنظيم الصفحة
+    -->
+
+      <!-- ======================================================= -->
+      <!-- HERO SECTION                                            -->
+      <!-- ======================================================= -->
+
+      <section class="hero" id="home">
+        <div class="container hero-content">
+          <!-- النصوص الخاصة بالـHero -->
+          <div class="hero-text">
+            <!-- العنوان الصغير -->
+            <span class="eyebrow" id="hero-eyebrow"></span>
+
+            <!-- العنوان الرئيسي -->
+            <h1 id="hero-title"></h1>
+
+            <!-- الوصف -->
+            <p id="hero-description"></p>
+
+            <!-- أزرار الـHero -->
+            <div class="hero-buttons">
+              <!-- الزر الأول -->
+              <a
+                href="#services"
+                class="btn btn-primary"
+                id="hero-primary-button"
+              ></a>
+
+              <!-- الزر الثاني -->
+              <a
+                href="#contact"
+                class="btn btn-secondary"
+                id="hero-secondary-button"
+              ></a>
+            </div>
+          </div>
+
+          <!-- صورة الـHero -->
+          <div class="hero-image">
+            <img
+              id="hero-image"
+              src=""
+              alt=""
+              fetchpriority="high"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================= -->
+      <!-- ABOUT SECTION                                           -->
+      <!-- ======================================================= -->
+
+      <section class="about section" id="about">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow" id="about-eyebrow"></p>
+
+            <h2 id="about-title"></h2>
+
+            <p id="about-description"></p>
+          </div>
+
+          <div class="about-content">
+            <div class="about-image">
+              <img
+                id="about-image"
+                src=""
+                alt=""
+                loading="lazy"
+              />
+            </div>
+
+            <div class="about-text">
+              <h3 id="about-content-title"></h3>
+
+              <p id="about-content-description"></p>
+
+              <a href="" class="text-link" id="about-button"></a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+      SERVICES SECTION
+      ============================================================ -->
+
+      <section class="services section" id="services">
+        <div class="container">
+          <!-- عنوان القسم -->
+          <div class="section-heading">
+            <!-- العنوان الصغير -->
+            <span class="eyebrow"> What We Do </span>
+
+            <!-- العنوان الرئيسي -->
+            <h2>Our Services</h2>
+
+            <!-- وصف القسم -->
+            <p>
+              Professional digital services designed to help your business grow.
+            </p>
+          </div>
+
+          <!--
+          مهم جدًا:
+
+          JavaScript سيبحث عن هذا العنصر باستخدام:
+          #services-grid
+
+          ثم سيضع داخله الـService Cards تلقائيًا.
+          -->
+
+          <div class="services-grid" id="services-grid"></div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+      PORTFOLIO SECTION
+      ============================================================ -->
+
+      <section class="portfolio section" id="portfolio">
+        <div class="container">
+          <!-- عنوان القسم -->
+          <div class="section-heading">
+            <!-- العنوان الصغير -->
+            <span class="eyebrow"> Our Work </span>
+
+            <!-- العنوان الرئيسي -->
+            <h2>Recent Projects</h2>
+
+            <!-- وصف القسم -->
+            <p>A selection of projects we have created for our clients.</p>
+          </div>
+
+          <!--
+          مهم جدًا:
+
+          JavaScript سيبحث عن:
+          #portfolio-grid
+
+          وسيضع داخله جميع الـProject Cards.
+          -->
+
+          <div class="portfolio-grid" id="portfolio-grid"></div>
+        </div>
+      </section>
+
+      <!-- ======================================================= -->
+      <!-- TESTIMONIALS SECTION                                    -->
+      <!-- ======================================================= -->
+
+      <section class="testimonials section" id="testimonials">
+        <div class="container">
+          <div class="section-heading">
+            <span class="eyebrow"> Testimonials </span>
+
+            <h2>What Our Clients Say</h2>
+
+            <p>Feedback from clients we have worked with.</p>
+          </div>
+
+          <div class="testimonials-grid" id="testimonials-grid"></div>
+        </div>
+      </section>
+
+      <!-- ======================================================= -->
+      <!-- PRICING SECTION                                         -->
+      <!-- ======================================================= -->
+
+      <section class="pricing section" id="pricing">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Pricing</p>
+
+            <h2>Simple Plans</h2>
+
+            <p>Choose the plan that fits your needs.</p>
+          </div>
+
+          <div class="pricing-grid" id="pricing-grid"></div>
+        </div>
+      </section>
+
+      <!-- ======================================================= -->
+      <!-- FAQ SECTION                                             -->
+      <!-- ======================================================= -->
+
+      <section class="faq section" id="faq">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">FAQ</p>
+
+            <h2>Frequently Asked Questions</h2>
+          </div>
+
+          <!--
+          JavaScript سيقوم بإنشاء
+          عناصر FAQ داخل هذه الحاوية
+          من بيانات siteData.faq
+          -->
+
+          <div class="faq-list" id="faq-list"></div>
+        </div>
+      </section>
+
+      <!-- ======================================================= -->
+      <!-- CTA SECTION                                             -->
+      <!-- ======================================================= -->
+
+      <section class="cta-section">
+        <div class="container">
+          <div class="cta-content">
+            <p class="eyebrow" id="cta-eyebrow"></p>
+
+            <h2 id="cta-title"></h2>
+
+            <p id="cta-description"></p>
+
+            <a href="#contact" class="btn btn-primary" id="cta-button"></a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================= -->
+      <!-- CONTACT SECTION                                         -->
+      <!-- ======================================================= -->
+
+      <section class="contact section" id="contact">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow" id="contact-eyebrow"></p>
+
+            <h2 id="contact-title"></h2>
+
+            <p id="contact-description"></p>
+          </div>
+
+          <div class="contact-content">
+            <div class="contact-info">
+              <div class="contact-item">
+                <h3>Email</h3>
+
+                <a href="" id="contact-email"></a>
+              </div>
+
+              <div class="contact-item">
+                <h3>Phone</h3>
+
+                <a href="" id="contact-phone"></a>
+              </div>
+
+              <div class="contact-item">
+                <h3>Location</h3>
+
+                <p id="contact-address"></p>
+              </div>
+            </div>
+
+            <!-- CONTACT FORM -->
+
+            <form class="contact-form" aria-label="Contact form">
+              <div class="form-group">
+                <label for="name">Your Name</label>
+
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="Enter your name"
+                  autocomplete="name"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="email">Your Email</label>
+
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="Enter your email"
+                  autocomplete="email"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="message">Your Message</label>
+
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="6"
+                  placeholder="Tell us about your project"
+                  required
+                ></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary">
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ========================================================= -->
+    <!-- FOOTER                                                    -->
+    <!-- ========================================================= -->
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-content">
+          <!-- FOOTER BRAND -->
+
+          <div class="footer-brand">
+            <a href="#home" class="logo" id="footer-brand-name"></a>
+
+            <p id="footer-description"></p>
+          </div>
+
+          <!-- FOOTER LINKS -->
+
+          <div class="footer-links">
+            <h3>Quick Links</h3>
+
+            <ul>
+              <li>
+                <a href="#home">Home</a>
+              </li>
+
+              <li>
+                <a href="#about">About</a>
+              </li>
+
+              <li>
+                <a href="#services">Services</a>
+              </li>
+
+              <li>
+                <a href="#portfolio">Portfolio</a>
+              </li>
+
+              <li>
+                <a href="#pricing">Pricing</a>
+              </li>
+
+              <li>
+                <a href="#faq">FAQ</a>
+              </li>
+
+              <li>
+                <a href="#contact">Contact</a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- FOOTER SOCIAL -->
+
+          <div class="footer-social">
+            <h3>Follow Us</h3>
+
+            <div id="footer-social-links"></div>
+          </div>
+        </div>
+
+        <!-- FOOTER BOTTOM -->
+
+        <div class="footer-bottom">
+          <p id="footer-copyright"></p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ملف بيانات الموقع -->
+    <script src="js/site-data.js"></script>
+
+    <!-- ملف وظائف الموقع -->
+    <script src="js/script.js"></script>
+  </body>
+</html>

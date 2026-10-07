@@ -1,6 +1,6 @@
 const siteData = {
   hero: {
-    eyebrow: "Digital Solutions",
+    eyebrow: "Digital Solutions & AI",
 
     title: "We Build Powerful Websites",
     description:

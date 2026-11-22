@@ -1,4 +1,56 @@
 /* ============================================================
+   00 — SITE INFORMATION
+   ============================================================ */
+
+const siteInfo = siteData.site;
+
+if (siteInfo) {
+
+  // Browser Tab Title
+  document.title = siteInfo.title;
+
+  // Website Language
+  document.documentElement.lang = siteInfo.language;
+
+  // Logo
+  const siteLogo = document.querySelector("#site-logo");
+
+  if (siteLogo) {
+    siteLogo.textContent = siteInfo.logo;
+  }
+
+  // SEO Description
+  const siteDescription =
+    document.querySelector("#site-description");
+
+  if (siteDescription) {
+    siteDescription.content = siteInfo.description;
+  }
+
+  // Open Graph Title
+  const ogTitle = document.querySelector("#og-title");
+
+  if (ogTitle) {
+    ogTitle.content = siteInfo.ogTitle;
+  }
+
+  // Open Graph Description
+  const ogDescription =
+    document.querySelector("#og-description");
+
+  if (ogDescription) {
+    ogDescription.content = siteInfo.ogDescription;
+  }
+
+  // Open Graph Image
+  const ogImage = document.querySelector("#og-image");
+
+  if (ogImage) {
+    ogImage.content = siteInfo.ogImage;
+  }
+
+}
+/* ============================================================
    01 — SELECTING ELEMENTS
    ============================================================ */
 
@@ -1469,7 +1521,7 @@ if (
   */
 
   footerBrandName.textContent =
-    siteData.footer.brandName;
+    siteData.site.name;
 
 
   /*
@@ -1477,7 +1529,7 @@ if (
   */
 
   footerDescription.textContent =
-    siteData.footer.description;
+    siteData.site.description;
 
 
   /*
@@ -1541,7 +1593,7 @@ if (
 
   footerCopyright.textContent =
     `© ${new Date().getFullYear()} ${
-      siteData.footer.brandName
+      siteData.site.name
     }. ${siteData.footer.copyright}`;
 
 }

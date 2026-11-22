@@ -1,8 +1,18 @@
 const siteData = {
+site: {
+  name: "NovaTech",
+  title: "NovaTech | Digital Agency",
+  description: "We build modern digital experiences",
+  logo: "NovaTech",
+  ogTitle: "NovaTech | Digital Agency",
+  ogDescription: "We build modern digital experiences",
+  ogImage: "assets/images/og-image.jpg",
+  language: "en"
+},
   hero: {
-    eyebrow: "Digital Solutions & AI",
+    eyebrow: "NovaTech",
 
-    title: "We Build Powerful Websites",
+    title: "We build modern digital experiences.",
     description:
       "Modern digital solutions designed to take your business to the next level.",
 
@@ -215,11 +225,6 @@ contact: {
   address: "Cairo, Egypt",
 },
 footer: {
-  brandName: "YourBrand",
-
-  description:
-    "Building modern digital experiences.",
-
   socialLinks: [
     {
       name: "Facebook",

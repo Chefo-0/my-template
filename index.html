@@ -50,10 +50,7 @@
     بدونه قد تظهر الصفحة بشكل سيئ على الهاتف.
   -->
 
-    <meta
-      name="description"
-      content="A modern and professional website template."
-    />
+    <meta name="description" id="site-description" content="" />
     <!--
     هذا وصف الصفحة.
 
@@ -82,7 +79,7 @@
     باتباع الروابط الموجودة داخل الصفحة.
   -->
 
-    <meta property="og:title" content="Your Website Name" />
+    <meta property="og:title" id="og-title" content="" />
     <!--
     Open Graph Metadata.
 
@@ -93,7 +90,7 @@
     هو العنوان الذي يمكن أن يظهر عند مشاركة الرابط.
   -->
 
-    <meta property="og:description" content="Your website description." />
+    <meta property="og:description" id="og-description" content="" />
     <!--
     الوصف الذي يمكن أن يظهر عند مشاركة الموقع
     على منصات التواصل الاجتماعي.
@@ -107,7 +104,7 @@
     تعني أن الرابط يشير إلى موقع ويب.
   -->
 
-    <meta property="og:image" content="assets/images/og-image.jpg" />
+    <meta property="og:image" id="og-image" content="" />
     <!--
     الصورة التي يمكن أن تظهر عند مشاركة الموقع
     على مواقع التواصل الاجتماعي.
@@ -173,7 +170,7 @@
     هنا سنضع كل تصميم الموقع.
   -->
 
-    <title>Your Website Name | Modern Digital Experience</title>
+    <title id="site-title"></title>
     <!--
     عنوان الصفحة.
 
@@ -235,7 +232,7 @@
           يعيد المستخدم إلى بداية الصفحة.
         -->
 
-          YourBrand
+          <span id="site-logo"></span>
           <!--
           اسم الشركة أو الـBrand.
 
@@ -379,12 +376,7 @@
 
           <!-- صورة الـHero -->
           <div class="hero-image">
-            <img
-              id="hero-image"
-              src=""
-              alt=""
-              fetchpriority="high"
-            />
+            <img id="hero-image" src="" alt="" fetchpriority="high" />
           </div>
         </div>
       </section>
@@ -405,12 +397,7 @@
 
           <div class="about-content">
             <div class="about-image">
-              <img
-                id="about-image"
-                src=""
-                alt=""
-                loading="lazy"
-              />
+              <img id="about-image" src="" alt="" loading="lazy" />
             </div>
 
             <div class="about-text">

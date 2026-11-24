@@ -1235,7 +1235,6 @@ h3 {
 
 .testimonials {
   color: var(--color-white);
-
   background-color: var(--color-primary);
 }
 
@@ -1245,21 +1244,31 @@ h3 {
 
 .testimonials-grid {
   display: grid;
-
   grid-template-columns: repeat(2, 1fr);
-
   gap: 24px;
 }
 
 .testimonial-card {
   padding: 36px;
-
   background-color: rgba(255, 255, 255, 0.05);
-
   border: 1px solid rgba(255, 255, 255, 0.1);
-
   border-radius: var(--radius-md);
 }
+
+/*
+  جعل آخر بطاقة تأخذ عرض الصف بالكامل
+  إذا كان عدد البطاقات فرديًا.
+  يعمل فقط على الشاشات الأكبر من 768px.
+*/
+
+@media (min-width: 769px) {
+  .testimonials-grid
+  > .testimonial-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+}
+
 
 /*
   نص الـTestimonial.
@@ -1279,7 +1288,6 @@ h3 {
 
 .testimonial-message {
   color: rgba(255, 255, 255, 0.85);
-
   font-size: 1.05rem;
 }
 
@@ -1289,12 +1297,47 @@ h3 {
 
 .testimonial-author {
   display: flex;
-
   align-items: center;
-
   gap: 14px;
-
   margin-top: 28px;
+}
+
+
+/*
+  صورة العميل.
+*/
+
+
+/*
+  صورة العميل.
+*/
+
+.testimonial-image {
+  width: 64px;
+  height: 64px;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+
+  border: 2px solid rgba(255, 255, 255, 0.2);
+
+  display: block;
+
+  flex-shrink: 0;
+}
+
+
+/*
+  اسم العميل ووظيفته.
+*/
+
+.testimonial-info {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 4px;
 }
 
 /*

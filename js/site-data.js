@@ -105,28 +105,31 @@ site: {
     link: "#",
   },
 ],
-  testimonials: [
-    {
-      name: "Ahmed Hassan",
-      role: "Business Owner",
-      message:
-        "Working with this team was a great experience. They delivered a modern website that helped our business grow.",
-    },
+testimonials: [
+  {
+    name: "Ahmed Hassan",
+    role: "Business Owner",
+    message:
+      "Working with this team was a great experience. They delivered a modern website that helped our business grow.",
+    image: "assets/images/client-ahmed.jpg",
+  },
 
-    {
-      name: "Sarah Mohamed",
-      role: "Marketing Manager",
-      message:
-        "The design was clean, professional, and exactly what we were looking for. Highly recommended.",
-    },
+  {
+    name: "Sarah Mohamed",
+    role: "Marketing Manager",
+    message:
+      "The design was clean, professional, and exactly what we were looking for. Highly recommended.",
+    image: "assets/images/client-sarah.jpg",
+  },
 
-    {
-      name: "Omar Ali",
-      role: "Startup Founder",
-      message:
-        "They understood our vision and turned it into a beautiful digital experience. The whole process was smooth.",
-    },
-  ],
+  {
+    name: "Omar Ali",
+    role: "Startup Founder",
+    message:
+      "They understood our vision and turned it into a beautiful digital experience. The whole process was smooth.",
+    image: "assets/images/client-omar.jpg",
+  },
+],
   pricing: [
   {
     name: "Starter",

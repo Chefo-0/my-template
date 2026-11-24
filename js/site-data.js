@@ -225,6 +225,7 @@ contact: {
     "Have a project in mind? Send us a message and let's discuss how we can help.",
   email: "hello@example.com",
   phone: "+20 100 000 0000",
+  whatsapp: "201000000000",
   address: "Cairo, Egypt",
 },
 footer: {

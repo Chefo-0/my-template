@@ -1056,7 +1056,138 @@ if (
 }
 
 /* ============================================================
-   17 — SCROLL REVEAL
+   17 — WHATSAPP FLOATING BUTTON
+   ============================================================ */
+
+/*
+  الحصول على زر WhatsApp.
+*/
+
+const whatsappButton = document.querySelector("#whatsapp-button");
+
+/*
+  التحقق من وجود الزر ورقم WhatsApp.
+*/
+
+if (whatsappButton && siteData.contact.whatsapp) {
+
+  /*
+    تنظيف رقم الهاتف.
+
+    إزالة أي رموز أو مسافات أو علامة +.
+
+    WhatsApp يحتاج الرقم بصيغة دولية
+    بدون علامة + أو مسافات.
+  */
+
+  const whatsappNumber = siteData.contact.whatsapp.replace(/\D/g, "");
+
+  /*
+    إنشاء رابط المحادثة.
+  */
+
+  if (whatsappNumber) {
+
+    whatsappButton.href = `https://wa.me/${whatsappNumber}`;
+
+    /*
+      إظهار الزر بعد تجهيز الرابط.
+    */
+
+    whatsappButton.classList.add("is-ready");
+
+    /*
+      العناصر التي لا نريد أن يغطيها الزر.
+    */
+
+    const protectedElements = document.querySelectorAll(
+      ".faq-list, .contact-info, .contact-form"
+    );
+
+    /*
+      دالة للتحقق من تداخل الزر
+      مع العناصر المهمة.
+    */
+
+    function checkWhatsAppOverlap() {
+
+      /*
+        إذا كان المستخدم يتفاعل مع الزر
+        باستخدام لوحة المفاتيح، لا نخفيه.
+      */
+
+      if (document.activeElement === whatsappButton) {
+        return;
+      }
+
+      const buttonRect = whatsappButton.getBoundingClientRect();
+
+      let hasOverlap = false;
+
+      protectedElements.forEach((element) => {
+
+        const elementRect = element.getBoundingClientRect();
+
+        /*
+          التحقق من وجود تداخل فعلي
+          بين مساحة الزر والعنصر.
+        */
+
+        const isOverlapping =
+          buttonRect.left < elementRect.right &&
+          buttonRect.right > elementRect.left &&
+          buttonRect.top < elementRect.bottom &&
+          buttonRect.bottom > elementRect.top;
+
+        if (isOverlapping) {
+          hasOverlap = true;
+        }
+
+      });
+
+      /*
+        إخفاء الزر عند وجود تداخل.
+      */
+
+      whatsappButton.classList.toggle("is-hidden", hasOverlap);
+    }
+
+    /*
+      تشغيل التحقق عند تحميل الصفحة.
+    */
+
+    checkWhatsAppOverlap();
+
+    /*
+      إعادة التحقق أثناء Scroll.
+    */
+
+    window.addEventListener(
+      "scroll",
+      checkWhatsAppOverlap,
+      { passive: true }
+    );
+
+    /*
+      إعادة التحقق عند تغيير حجم الشاشة.
+    */
+
+    window.addEventListener(
+      "resize",
+      checkWhatsAppOverlap
+    );
+
+    /*
+      إعادة إظهار الزر بعد انتهاء التركيز عليه.
+    */
+
+    whatsappButton.addEventListener("blur", checkWhatsAppOverlap);
+
+  }
+}
+
+/* ============================================================
+   18 — SCROLL REVEAL
    ============================================================ */
 
 /*
@@ -1117,14 +1248,3 @@ if ("IntersectionObserver" in window) {
     element.classList.add("reveal-visible");
   });
 }
-
-/* ============================================================
-   18 — CONSOLE MESSAGE
-   ============================================================ */
-
-/*
-  رسالة تظهر للمطور داخل Console
-  للتأكد أن الـJavaScript تم تحميله.
-*/
-
-console.log("Website Template loaded successfully.");
